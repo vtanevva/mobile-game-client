@@ -36,7 +36,7 @@ const Login = () => {
 
   return (
     <div className="main">
-      <div class="overlay overlay-color">
+      <div className="overlay overlay-color">
       <div className="back-button"> <Link className="back-button-a" to="/">back </Link> </div>
       <h2 className="login-img"></h2>
       

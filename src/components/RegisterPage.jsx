@@ -97,11 +97,11 @@ const Register = () => {
 
       <div className="button skip">
        
-        <div className="group-down group-down-r">
-            <div className="or ">
+        <div className="group-down group-down-register">
+            <div className="or-register">
                 Or
             </div>
-            <div className="networks networks-r">
+            <div className="networks networks-register">
               <div className="network Google">
 
               </div>
@@ -114,7 +114,7 @@ const Register = () => {
             </div>
           </div>
           <button className="button sign-up-register">
-            <Link to="/login" className="grey-link">
+            <Link to="/login" className="grey-link grey-link-register">
               Already have an acoount? <span className="span-login">Sign In</span>
             </Link>
           </button>

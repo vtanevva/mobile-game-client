@@ -14,7 +14,7 @@
   /*Login Page*/
   .overlay {
 	background-color: #213547;
-	width: 55vh;
+	width: 57vh;
 	height: 100vh;
 	z-index: -1;
   }
@@ -39,7 +39,7 @@
 	position: relative;
 	bottom: 25vh;
 	text-align: center;
-	left: vh;
+	left: -0.3vh;
 	top: -30vh;
   }
   .login-img {
@@ -47,7 +47,7 @@
 	height: 20vh;
 	position: relative;
 	top: 4vh;
-	left: 35%;
+	left: 34%;
 	background-image: url('./public/character.png');
 	font-weight: 550;
 	background-repeat: no-repeat;
@@ -109,7 +109,13 @@ font-size: 0.8em;
   }
   .form-login {
 	position: relative;
-	top: 10.5vh;
+	top: 8.5vh;
+	background-color: white;
+	padding: 6vh;
+	padding-top: 6vh;
+	border-radius: 5vh;
+	padding-right: 8.2vh;
+	padding-bottom: 10vh;
   }
   .form-login .label {
 	position: relative;
@@ -121,13 +127,15 @@ font-size: 0.8em;
  
   .login-button {
 	background-color: black;
-	height: 5.7vh;
-	width: 108.4%;
+	height: 6.1vh;
+	width: 108.5%;
 	text-align: center;
 	padding-left: 3%;
 	color: white;
-	border-radius: 1.1vh;
-	
+	border-radius: 1.3vh;
+	font-size: 1.9vh;
+	position: relative;
+	top: -0.2vh;
   }
   .register-path:link,.register-path:visited {
 	color: black;
@@ -152,11 +160,20 @@ font-size: 0.8em;
   }
   .sign-up-register {
 	position: relative;
-		top: -3vh;
-		left:-5vh;
+		top: -3.8vh;
+		left:-6vh;
   }
   .or {
-	margin-bottom: 2vh;
+	margin-bottom: 3vh;
+	position: relative;
+	top: 1.6vh;
+	left: -0.3vh;
+  }
+  .or-register {
+	margin-bottom: 3vh;
+position: relative;
+right: 0.7vh;
+top: -0.5vh;
   }
   .skip {
 	position: relative;
@@ -169,7 +186,6 @@ top: 5vh;
   .grey-link {
 	  font-size: 13px;
 	  position: relative;
-	  top: -0.5vh;
   }
   .grey-link-home {
 	left: 4vh;
@@ -223,7 +239,9 @@ height: 7vh;
 	display: flex;
 	gap: 5vh;
 	flex-direction: row;
-	
+	position: relative;
+	left: 1.2vh;
+	top: 0.9vh;
   }
   
   /*homepage*/
@@ -236,7 +254,7 @@ height: 7vh;
 	height: 25vh;
 	position: relative;
 top: 10vh;
-left: 7vh;
+left: 8vh;
   }
   .buttons {
 	display: flex;
@@ -259,20 +277,27 @@ left: 7vh;
 	text-align: center;
 	
   }
+  .sign-up-home:hover {
+	color: white;
+  }
   
   /*registerpage*/
   .register-button {
 	background-color: black;
 	color: white;
-	height: 6vh;
-	width: 107.5%;
+	height: 6.1vh;
+	width: 108.5%;
 	position: relative;
-	bottom: 7vh;
+	bottom: 9.3vh;
+	font-size: 1.9vh;
+	margin-top: 1vh;
+
   }
 
-  .networks-r {
+  .networks-register {
 	position: relative;
-	left: 13.5vh;
+	left: 14.25vh;
+	top: -1.25vh;
   }
   .toggle-password  {
 	position: relative;
@@ -281,7 +306,10 @@ left: 7vh;
 	width: 10px;
 	height: 10px;
   }
-  .group-down-r {
+  .grey-link-register {
+	padding-top: 20vh;
+  }
+  .group-down-register {
 	position: relative;
 	left: -2vh;
 	top:-5vh;
