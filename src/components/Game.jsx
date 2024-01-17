@@ -20,6 +20,7 @@ function Game() {
     const originalBoxSize = 3; // Original width and height of a box
     let autopilot;
     let gameEnded;
+    let touchStartY = 0;
     let robotPrecision; // Determines how precise the game is on autopilot
 
     const scoreElement = document.getElementById("score");
@@ -181,11 +182,20 @@ function Game() {
       );
       topLayer.cannonjs.shapes = [];
       topLayer.cannonjs.addShape(shape);
-    }
+    };
 
     window.addEventListener("mousedown", eventHandler);
-    window.addEventListener("touchstart", eventHandler);
-    window.addEventListener("keydown", function (event) {
+    window.addEventListener("touchstart", (event) => {
+      touchStartY = event.touches[0].clientY;
+    });
+    window.addEventListener("touchend", (event) => {
+      const touchEndY = event.changedTouches[0].clientY;
+      if (touchEndY < touchStartY) {
+        handleUserAction();
+      }
+    });
+
+       window.addEventListener("keydown", function (event) {
       if (event.key === " ") {
         event.preventDefault();
         eventHandler();
@@ -203,7 +213,10 @@ function Game() {
         setGameState("playing");
         startGame();
       } else if (gameState === "playing") {
-        splitBlockAndAddNextOneIfOverlaps();
+        // Check if it's the first tap to prevent ending the game immediately
+        if (!gameEndedRef.current) {
+          splitBlockAndAddNextOneIfOverlaps();
+        }
       }
     };
 
@@ -420,7 +433,8 @@ function Game() {
 
     // Clean up when the component unmounts
     return () => {
-      
+      window.removeEventListener("touchstart", handleUserAction);
+
 
       // Remove the canvas element if it exists
       const existingCanvas = canvasContainerRef.current.querySelector('canvas');
@@ -428,7 +442,7 @@ function Game() {
         canvasContainerRef.current.removeChild(existingCanvas);
       }
     };
-  }, []);
+  }, [gameState]);
 
   return <div ref={canvasContainerRef} />;
 }
