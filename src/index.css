@@ -307,7 +307,10 @@ left: 8vh;
 	height: 10px;
   }
   .grey-link-register {
-	padding-top: 20vh;
+	color: grey;
+	position: relative;
+	top: -0.5vh;
+
   }
   .group-down-register {
 	position: relative;

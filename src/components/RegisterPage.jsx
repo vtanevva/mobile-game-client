@@ -27,7 +27,7 @@ const Register = () => {
       console.log('User registered:', result);
 
     } catch (error) {
-      console.error('Registration failed:', error.message);
+      console.error('Registration failed:', error.message1);
       setError('Registration failed. Please try again.');
     } finally {
       setLoading(false);
@@ -112,9 +112,9 @@ const Register = () => {
             </div>
           </div>
           <button className="button sign-up-register">
-            <Link to="/login" className="grey-link grey-link-register">
-              Already have an acoount? <span className="span-login">Sign In</span>
-            </Link>
+            <div className="grey-link grey-link-register">
+              Already have an acoount? <Link to="/login"> <span className="span-login">Sign In </span></Link>
+            </div>
           </button>
         
       </div>
