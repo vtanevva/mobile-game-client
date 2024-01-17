@@ -21,7 +21,7 @@
   .back-button {
 	position: relative;
 	top: 4vh;
-	left: 8vh;
+	left: 5vh;
 	text-decoration: none;
 	color: white;
   }
@@ -126,7 +126,7 @@ font-size: 0.8em;
   }
  
   .login-button {
-	background-color: black;
+	background-color: #213547;
 	height: 6.1vh;
 	width: 108.5%;
 	text-align: center;
@@ -217,7 +217,7 @@ height: 7vh;
 
   }
   .Google {
-	background-image: url('public/google.jpg');
+	background-image: url('public/google1.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	
@@ -283,7 +283,7 @@ left: 8vh;
   
   /*registerpage*/
   .register-button {
-	background-color: black;
+	background-color: #213547;
 	color: white;
 	height: 6.1vh;
 	width: 108.5%;
@@ -324,7 +324,6 @@ left: 8vh;
   }
   
   /*game*/
-  @import url('https://fonts.googleapis.com/css?family=Comfortaa');
   
   #container
   {
