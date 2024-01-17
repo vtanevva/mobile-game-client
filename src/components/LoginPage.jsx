@@ -78,7 +78,7 @@ const Login = () => {
             {loading ? 'Signing in...' : 'Sign In'}
           </button>{' '}
           <br />
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {error && <p style={{ color: 'red', position: 'absolute', top:'38vh', left: '7.3vh' }}>{error}</p>}
           <div className="group-down">
             <div className="or">
                 Or

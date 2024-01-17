@@ -27,7 +27,7 @@ const Register = () => {
       console.log('User registered:', result);
 
     } catch (error) {
-      console.error('Registration failed:', error.message1);
+      console.error('Registration failed:', error.message);
       setError('Registration failed. Please try again.');
     } finally {
       setLoading(false);
@@ -90,7 +90,7 @@ const Register = () => {
           {loading ? 'Signing Up...' : 'Sign Up'}
         </button>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: 'red', position: 'absolute', top:'47vh', left:'7.3vh' }}>{error}</p>}
       </form>
 
       <div className="button skip">

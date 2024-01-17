@@ -317,6 +317,10 @@ left: 8vh;
 	left: -2vh;
 	top:-5vh;
   }
+  #error-message1 {
+	position: absolute;
+	top: 0;
+  }
   .toggle-password i {
 	width: 10px;
 	height: 10px;
