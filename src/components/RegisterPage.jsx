@@ -9,7 +9,7 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Set initial state to false
+  const [showPassword, setShowPassword] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -26,8 +26,6 @@ const Register = () => {
       const result = await registerUser(username, password);
       console.log('User registered:', result);
 
-      // Optionally, you can redirect the user to another page after successful registration
-      // history.push('/dashboard');
     } catch (error) {
       console.error('Registration failed:', error.message);
       setError('Registration failed. Please try again.');
@@ -40,7 +38,7 @@ const Register = () => {
     <div className="main">
       <div className="overlay overlay-color">
            <div className="back-button"> <Link className="back-button-a" to="/">back </Link> </div>
-      <h2 className=" register-img"></h2>
+           <Link to="/game"><h2 className=" register-img"></h2></Link>
       
     
       <form className="form form-register" onSubmit={handleRegister}>

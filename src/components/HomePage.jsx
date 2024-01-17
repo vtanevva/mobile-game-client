@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function HomePage() {
   return (
     <div class="homepage">
-       <div className="home-image"></div>
+       <Link to="/game"><div className="home-image"></div></Link>
        <h2 className='homepage-title'>Let's Get Started</h2>
 
        <div className="buttons">

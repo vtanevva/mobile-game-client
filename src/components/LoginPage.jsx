@@ -38,7 +38,7 @@ const Login = () => {
     <div className="main">
       <div className="overlay overlay-color">
       <div className="back-button"> <Link className="back-button-a" to="/">back </Link> </div>
-      <h2 className="login-img"></h2>
+      <Link to="/game"><h2 className="login-img"></h2></Link>
       
 
       <form className="form form-login" onSubmit={handleLogin}>
