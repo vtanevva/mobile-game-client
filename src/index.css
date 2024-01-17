@@ -167,7 +167,7 @@ font-size: 0.8em;
 	margin-bottom: 3vh;
 	position: relative;
 	top: 1.6vh;
-	left: -0.3vh;
+	
   }
   .or-register {
 	margin-bottom: 3vh;
@@ -240,8 +240,8 @@ height: 7vh;
 	gap: 5vh;
 	flex-direction: row;
 	position: relative;
-	left: 1.2vh;
-	top: 0.9vh;
+	left: 1.9vh;
+	top: 0.8vh;
   }
   
   /*homepage*/
@@ -296,7 +296,7 @@ left: 8vh;
 
   .networks-register {
 	position: relative;
-	left: 14.25vh;
+	left: 15vh;
 	top: -1.25vh;
   }
   .toggle-password  {
