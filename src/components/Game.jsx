@@ -1,30 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as CANNON from 'cannon';
 import * as THREE from 'three';
 
 function Game() {
   const canvasContainerRef = useRef();
-  const gameEndedRef = useRef(false); // Ref to track game end
-  const scoreRef = useRef(0); // Ref to track the score
+  const gameEndedRef = useRef(false);
+  const scoreRef = useRef(0);
+  const [gameState, setGameState] = useState("preview");
 
   useEffect(() => {
     console.clear();
-
-    window.focus();
-
-    class Game {
-      constructor() {
-        this.STATES = {
-          LOADING: "loading",
-          PLAYING: "playing",
-          READY: "ready",
-          ENDED: "ended",
-          RESETTING: "resetting"
-        };
-        this.blocks = [];
-        this.state = this.STATES.LOADING;
-      }
-    }
 
     let camera, scene, renderer; // ThreeJS globals
     let world; // CannonJs world
@@ -101,8 +86,6 @@ function Game() {
       const width = 10;
       const height = width / aspect;
 
-
-      
       camera = new THREE.OrthographicCamera(
         width / -2,
         width / 2,
@@ -139,40 +122,6 @@ function Game() {
       }
 
       canvasContainerRef.current.appendChild(renderer.domElement);
-    }
-
-    function startGame() {
-      autopilot = false;
-      gameEnded = false;
-      lastTime = 0;
-      stack = [];
-      overhangs = [];
-
-      if (instructionsElement) instructionsElement.style.display = "none";
-      if (resultsElement) resultsElement.style.display = "none";
-      if (scoreElement) scoreElement.innerText = 0;
-
-      if (world) {
-        while (world.bodies.length > 0) {
-          world.remove(world.bodies[0]);
-        }
-      }
-
-      if (scene) {
-        while (scene.children.find((c) => c.type == "Mesh")) {
-          const mesh = scene.children.find((c) => c.type == "Mesh");
-          scene.remove(mesh);
-        }
-
-        addLayer(0, 0, originalBoxSize, originalBoxSize);
-
-        addLayer(-10, 0, originalBoxSize, originalBoxSize, "x");
-      }
-
-      if (camera) {
-        camera.position.set(4, 4, 4);
-        camera.lookAt(0, 0, 0);
-      }
     }
 
     function addLayer(x, z, width, depth, direction) {
@@ -237,17 +186,26 @@ function Game() {
     window.addEventListener("mousedown", eventHandler);
     window.addEventListener("touchstart", eventHandler);
     window.addEventListener("keydown", function (event) {
-      if (event.key == " ") {
+      if (event.key === " ") {
         event.preventDefault();
         eventHandler();
         return;
       }
-      if (event.key == "R" || event.key == "r") {
+      if (event.key === "R" || event.key === "r") {
         event.preventDefault();
         startGame();
         return;
       }
     });
+    
+    function handleUserAction() {
+      if (gameState === "preview") {
+        setGameState("playing");
+        startGame();
+      } else if (gameState === "playing") {
+        splitBlockAndAddNextOneIfOverlaps();
+      }
+    };
 
     function eventHandler() {
       if (autopilot) startGame();
@@ -262,7 +220,7 @@ function Game() {
 
       const direction = topLayer.direction;
 
-      const size = direction == "x" ? topLayer.width : topLayer.depth;
+      const size = direction === "x" ? topLayer.width : topLayer.depth;
       const delta =
         topLayer.threejs.position[direction] -
         previousLayer.threejs.position[direction];
@@ -275,23 +233,23 @@ function Game() {
         const overhangShift =
           (overlap / 2 + overhangSize / 2) * Math.sign(delta);
         const overhangX =
-          direction == "x"
+          direction === "x"
             ? topLayer.threejs.position.x + overhangShift
             : topLayer.threejs.position.x;
         const overhangZ =
-          direction == "z"
+          direction === "z"
             ? topLayer.threejs.position.z + overhangShift
             : topLayer.threejs.position.z;
-        const overhangWidth = direction == "x" ? overhangSize : topLayer.width;
-        const overhangDepth = direction == "z" ? overhangSize : topLayer.depth;
+        const overhangWidth = direction === "x" ? overhangSize : topLayer.width;
+        const overhangDepth = direction === "z" ? overhangSize : topLayer.depth;
 
         addOverhang(overhangX, overhangZ, overhangWidth, overhangDepth);
 
-        const nextX = direction == "x" ? topLayer.threejs.position.x : -10;
-        const nextZ = direction == "z" ? topLayer.threejs.position.z : -10;
+        const nextX = direction === "x" ? topLayer.threejs.position.x : -10;
+        const nextZ = direction === "z" ? topLayer.threejs.position.z : -10;
         const newWidth = topLayer.width;
         const newDepth = topLayer.depth;
-        const nextDirection = direction == "x" ? "z" : "x";
+        const nextDirection = direction === "x" ? "z" : "x";
 
         if (scoreElement) scoreElement.innerText = stack.length - 1;
         addLayer(nextX, nextZ, newWidth, newDepth, nextDirection);
@@ -299,6 +257,7 @@ function Game() {
         missedTheSpot();
       }
     }
+
     function gameEndedMessage() {
       // Display the game-ended message
       const message = document.createElement("div");
@@ -307,11 +266,11 @@ function Game() {
       message.style.top = "50%";
       message.style.left = "50%";
       message.style.border = "2px solid white";
-      message.style.padding = "1vh"
+      message.style.padding = "1vh";
       message.style.backgroundColor = "white";
       message.style.transform = "translate(-50%, -50%)";
       message.style.fontSize = "2em";
-      message.style.color = "#ff0000"; 
+      message.style.color = "#ff0000";
       message.style.display = "none";
       message.id = "gameEndedMessage";
       canvasContainerRef.current.appendChild(message);
@@ -345,10 +304,8 @@ function Game() {
         // Update the score display during the game
         scoreRef.current = stack.length - 1;
         scoreElement.innerText = scoreRef.current;
-
       }
     }
-
 
     function missedTheSpot() {
       const topLayer = stack[stack.length - 1];
@@ -364,11 +321,10 @@ function Game() {
 
       gameEnded = true;
       if (resultsElement && !autopilot) resultsElement.style.display = "flex";
-    
+
       gameEndedMessage();
     }
-   
-    
+
     function animation(time) {
       if (lastTime) {
         const timePassed = time - lastTime;
@@ -428,7 +384,6 @@ function Game() {
         updateScore();
       }
       lastTime = time;
-    
     }
 
     function updatePhysics(timePassed) {
@@ -452,6 +407,9 @@ function Game() {
       renderer.render(scene, camera);
     });
 
+    // Start the
+
+
     // Start the animation loop
     const animate = (time) => {
       animation(time);
@@ -462,21 +420,7 @@ function Game() {
 
     // Clean up when the component unmounts
     return () => {
-      // Dispose of resources, remove event listeners, etc.
-      window.removeEventListener("mousedown", eventHandler);
-      window.removeEventListener("touchstart", eventHandler);
-      window.removeEventListener("keydown", function (event) {
-        if (event.key == " ") {
-          event.preventDefault();
-          eventHandler();
-          return;
-        }
-        if (event.key == "R" || event.key == "r") {
-          event.preventDefault();
-          startGame();
-          return;
-        }
-      });
+      
 
       // Remove the canvas element if it exists
       const existingCanvas = canvasContainerRef.current.querySelector('canvas');
