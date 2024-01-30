@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api/api';
 import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 const Login = () => {
@@ -65,7 +63,7 @@ const Login = () => {
   type="button"
   onClick={handleTogglePassword}
 >
-  <i className={showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i>
+  {/* <i className={showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i> */}
 </button>
         </div>
         <br />

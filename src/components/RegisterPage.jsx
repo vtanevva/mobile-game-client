@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { registerUser } from '../api/api';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Set initial state to false
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -44,14 +41,14 @@ const Register = () => {
       
     
       <form className="form form-register" onSubmit={handleRegister}>
-      <label className="label">Email</label><input
+      {/* <label className="label">Email</label><input
         className="form-email"
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
 
-        />
+        /> */}
             <label className="label">Username</label>
 
         <input
@@ -77,7 +74,7 @@ const Register = () => {
   type="button"
   onClick={handleTogglePassword}
 >
-  <i className={showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i>
+  {/* <i className={showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i> */}
 </button>
 
         </div>
@@ -114,9 +111,9 @@ const Register = () => {
             </div>
           </div>
           <button className="button sign-up-register">
-            <Link to="/login" className="grey-link grey-link-register">
-              Already have an acoount? <span className="span-login">Sign In</span>
-            </Link>
+
+              Already have an acoount?             <Link to="/login" className="grey-link grey-link-register"><span className="span-login">Sign In</span></Link>
+            
           </button>
         
       </div>
