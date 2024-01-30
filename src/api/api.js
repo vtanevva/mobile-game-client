@@ -1,6 +1,6 @@
 // import axios from 'axios';
 
-const apiUrl = 'http://localhost:3000/api'; 
+const apiUrl = 'https://heroku-try1-239c2aa12f61.herokuapp.com//api'; 
 
 export const registerUser = async (username, password ) => {
   try {
