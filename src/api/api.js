@@ -1,6 +1,6 @@
 // import axios from 'axios';
 // client/src/api/api.js
-const apiUrl = 'http://localhost:5174/api'; // Make sure the path is correct
+const apiUrl = 'http://localhost:3000/api'; // Make sure the path is correct
 
 export const registerUser = async (username, password) => {
   try {
